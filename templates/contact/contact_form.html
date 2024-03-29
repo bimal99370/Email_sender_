@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Send Message</title>
+    <style>
+<!--        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap');-->
+        body {
+            background-color: #000; /* Black background color */
+            margin: 0;
+            padding: 0;
+            font-family: 'Argentum Sans', sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin: 10% auto;
+            max-width: 400px;
+            background-color: #3498db; /* Blue background color */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #080808; /* White text color */
+        }
+        button {
+            background-color: #2c3e50; /* Dark blue button color */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #5c060f; /* Darker red on hover */
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #080808; /* White text color for labels */
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% block content %}
+    <h1>Send Message</h1>
+    <form role="form" action="{% url 'contact' %}" method="post">
+        {% csrf_token %}
+        <label for="id_contact_name">Name:</label>
+        {{form.contact_name}}
+        <label for="id_contact_email">Email:</label>
+        {{form.contact_email}}
+        <label for="id_subject">Subject:</label>
+        {{form.subject}}
+        <label for="id_content">Content:</label>
+        {{form.content}}
+        <button type="submit">Submit</button>
+    </form>
+    {% endblock %}
+</div>
+</body>
+</html>
